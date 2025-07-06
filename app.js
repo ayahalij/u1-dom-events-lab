@@ -24,18 +24,18 @@ buttons.forEach((button) =>{
 button.addEventListener('click', (event) => {
 const target=event.target
     if (target.classList.contains('number')){
-        handleNumber(target.innerText)}
+        HNumber(target.innerText)}
 
     else if(target.classList.contains('operator')){
-        handleOperator(target.innerText)}
+        HOperator(target.innerText)}
 
     else if(target.classList.contains('equals')){
-        handleequal()}
+        HEqual()}
     })
 })
 
 /*-------------------------------- Functions --------------------------------*/
-function handleNumber(num){
+function HNumber(num){
     if (WaitingForOperand){
         WaitingForOperand = false
         display.innerText =num
@@ -45,7 +45,7 @@ function handleNumber(num){
     }
 }
 
-function handleOperator(nextOperator){
+function HOperator(nextOperator){
     const inputValue = parseFloat(display.innerText)
     if (nextOperator ==="C"){
         num1=''
@@ -61,7 +61,7 @@ function handleOperator(nextOperator){
          num1 =inputValue} 
     else if (operator){
     const currentValue =num1 || 0
-    const TheNewVlaue= calculate(currentValue,inputValue,operator)
+    const TheNewVlaue= Calculate(currentValue,inputValue,operator)
     display.innerText = String(TheNewVlaue)
     num1 =TheNewVlaue
     }
@@ -70,17 +70,17 @@ operator=nextOperator
 WaitingForOperand= true
 }
 
-function handleequal() {
+function HEqual() {
     const inputValue = parseFloat(display.innerText)
     
     if(num1 !== ''&& operator && !WaitingForOperand) {
-        const TheNewVlaue = calculate(num1,inputValue,operator)
+        const TheNewVlaue = Calculate(num1,inputValue,operator)
         display.innerText = String(TheNewVlaue)
         num1=TheNewVlaue
         operator =' '
         WaitingForOperand = true}
 }
-function calculate(n1,n2,operator){
+function Calculate(n1,n2,operator){
     switch (operator) {
     case'+':
         return n1 + n2
